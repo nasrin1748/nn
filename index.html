@@ -7,9 +7,14 @@
     <script defer src="https://pyscript.net/releases/2023.03.1/pyscript.js"></script>
 </head>
    <body>
-   <!--   <a href="hello.html" class="table">Table</a>--> 
- <py-script>
- import sys
+   <!--   <a href="hello.html" class="table">Table</a>-->
+      <py-config>
+        "packages" = ["zobi"]
+      </py-config>
+      <py-script>
+from zobi import subtract
+print(subtract(1,2))	   
+import sys
 print(sys.version)
 RED = chr(0x1F534)  # LARGE RED CIRCLE
 GREEN = chr(0x1F7E2)  # LARGE GREEN CIRCLE
