@@ -1,10 +1,118 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<h1>Click the Button to play Alexa can play WORD BUILDING.....</h1>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Python Function to JavaScript</title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 20px;
+        }
+        #output {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #fff;
+            color: #000;
+        }
+        #output1 {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #000000;
+            color: #ffffff;
+        }
+    </style>
 </head>
 <body>
-<form class = "grid" action ="/result" method = "POST">
-<input type="Submit" class = "file_submit">
-</form>
+    <button id="calculate-button">Dataframe</button>
+    <button id="calculate-button1">Print Hello</button>
+    <button id="calculate-button2">main</button>
+     <label for="number-input">Enter a number:</label>
+    <input type="number" id="number-input" placeholder="Type a number..." />
+    <button id="calculate-button3">Calculate Square</button>
+    <h2>Output</h2>
+    <div id="output"></div>
+    <div id="output1"></div>
+    <py-config>
+        "packages" = ["pandas","html2text"]
+        [[fetch]]
+        files = ["./main.py","./main.js"]
+   </py-config>
+
+    <py-script>
+        def calculate_square():
+            #import pandas as pd
+            #d = {'col1': [1, 2], 'col2': [3, 4]}
+            #df = pd.DataFrame(data=d)
+            import os
+            c = os.getcwd()
+            return c
+
+        # Expose the function to JavaScript
+        from js import document
+        document.calculate_square = calculate_square
+        def calculate_square1():
+            return "hello"
+
+        # Expose the function to JavaScript
+        from js import document
+        document.calculate_square1 = calculate_square1
+        def calculate_square2():
+            from main import click_handler
+            click_handler()
+        # Expose the function to JavaScript
+        from js import document
+        document.calculate_square2 = calculate_square2
+        def calculate_square3(number):
+            return number ** 2
+
+        # Expose the function to JavaScript
+        from js import document
+        document.calculate_square3 = calculate_square3
+    </py-script>
+
+    <script>
+        // JavaScript to call the Python function
+        document.getElementById('calculate-button').addEventListener('click', function() {
+                const result = document.calculate_square();
+                document.getElementById('output').innerText = result;
+                document.getElementById('output1').innerText = result;
+
+        });
+         document.getElementById('calculate-button1').addEventListener('click', function() {
+                const result = document.calculate_square1();
+                document.getElementById('output').innerText = result;
+                document.getElementById('output1').innerText = result;
+
+        });
+         document.getElementById('calculate-button2').addEventListener('click', function() {
+                const result = document.calculate_square2();
+                document.getElementById('output').innerText = result;
+                document.getElementById('output1').innerText = result;
+
+        });
+         document.getElementById('calculate-button3').addEventListener('click', function() {
+            const number = parseFloat(document.getElementById('number-input').value);
+            if (!isNaN(number)) {
+                // Call the Python function and get the result
+                const result = document.calculate_square3(number);
+                // Display the result
+                document.getElementById('output').innerText = `The square of ${number} is ${result}.`;
+                document.getElementById('output1').innerText = `The square of ${number} is ${result}.`;
+
+            } else {
+                document.getElementById('output').innerText = 'Please enter a valid number.';
+                document.getElementById('output1').innerText = 'Please enter a valid number.';
+
+            }
+        });
+        
+    </script>
 </body>
 </html>
