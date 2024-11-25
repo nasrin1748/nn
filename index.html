@@ -47,12 +47,10 @@
 
     <py-script>
         def calculate_square():
-            #import pandas as pd
-            #d = {'col1': [1, 2], 'col2': [3, 4]}
-            #df = pd.DataFrame(data=d)
-            import os
-            c = os.getcwd()
-            return c
+            import pandas as pd
+            d = {'col1': [1, 2], 'col2': [3, 4]}
+            df = pd.DataFrame(data=d)
+            return df
 
         # Expose the function to JavaScript
         from js import document
